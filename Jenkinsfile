@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy to tomcat') { 
             steps {
                 sh 'echo "i am Deploying"'
-                sh 'sudo cp "/var/lib/jenkins/workspace/pipelinejob/target/my-java-app-1.0-SNAPSHOT.war /home/ec2-user/apache-tomcat-10.1.49/webapps/'
+                sh 'sudo cp "/var/lib/jenkins/workspace/pipelinejob/target/my-java-app-1.0-SNAPSHOT.war /home/ec2-user/apache-tomcat-10.1.49/webapps/"
             }
         }
     }
