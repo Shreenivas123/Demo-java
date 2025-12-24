@@ -1,99 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Elastic Beanstalk App from Jenkins</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<title>Jenkins CI/CD Deployment</title>
 
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        overflow: hidden;
+        color: #fff;
+    }
+
+    /* Animated gradient overlay */
+    body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 60%),
+                    radial-gradient(circle at bottom right, rgba(0,0,0,0.2), transparent 60%);
+        animation: pulse 6s infinite alternate;
+        z-index: 0;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+        max-width: 520px;
+        padding: 55px 65px;
+        text-align: center;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(255,255,255,0.35);
+        box-shadow:
+            0 20px 50px rgba(0,0,0,0.35),
+            inset 0 0 30px rgba(255,255,255,0.1);
+        animation: fadeUp 1.6s ease forwards;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+        margin-bottom: 15px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #f1f1f1;
+        margin: 12px 0;
+    }
+
+    .badge {
+        display: inline-block;
+        margin-bottom: 18px;
+        padding: 6px 16px;
+        font-size: 0.85rem;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.25);
+        border: 1px solid rgba(255,255,255,0.4);
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+    }
+
+    a.button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 36px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: #4b3fd1;
+        background: linear-gradient(135deg, #ffffff, #f1f1ff);
+        border-radius: 50px;
+        box-shadow:
+            0 10px 30px rgba(255,255,255,0.45),
+            inset 0 -2px 6px rgba(0,0,0,0.1);
+        transition: all 0.35s ease;
+    }
+
+    a.button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow:
+            0 18px 45px rgba(255,255,255,0.65),
+            inset 0 -2px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Floating shapes */
+    .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(2px);
+        opacity: 0.35;
+        animation: float 10s infinite alternate ease-in-out;
+    }
+
+    .blob.one {
+        width: 160px;
+        height: 160px;
+        background: #ffffff;
+        top: 12%;
+        left: 10%;
+    }
+
+    .blob.two {
+        width: 260px;
+        height: 260px;
+        background: #000000;
+        bottom: 10%;
+        right: 12%;
+        animation-duration: 12s;
+    }
+
+    .blob.three {
+        width: 200px;
+        height: 200px;
+        background: #ffffff;
+        top: 55%;
+        left: 65%;
+        animation-duration: 14s;
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(0px) translateX(0px);
+        }
+        to {
+            transform: translateY(-35px) translateX(20px);
+        }
+    }
+
+    @keyframes pulse {
+        from { opacity: 0.8; }
+        to { opacity: 1; }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
         .container {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 50px 70px;
-            border-radius: 25px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0px 8px 25px rgba(0,0,0,0.25);
-            text-align: center;
-            animation: slideUp 1.5s ease;
-            border: 1px solid rgba(255,255,255,0.5);
+            padding: 40px 30px;
         }
-
         h1 {
-            font-size: 2.2rem;
-            color: #ffffff;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            font-size: 1.9rem;
         }
-
         p {
-            font-size: 1.2rem;
-            color: #f9f9f9;
-            margin-top: 10px;
+            font-size: 1rem;
         }
-
-        a {
-            display: inline-block;
-            margin-top: 25px;
-            text-decoration: none;
-            background: #ffffff;
-            color: #4A47A3;
-            padding: 14px 30px;
-            font-size: 1.1rem;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.3s ease-in-out;
-            box-shadow: 0px 4px 20px rgba(255,255,255,0.4);
-        }
-
-        a:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0px 8px 25px rgba(255,255,255,0.6);
-        }
-
-        /* Background floating circles */
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            animation: float 8s infinite ease-in-out alternate;
-            z-index: 0;
-        }
-
-        .circle.small { width: 120px; height: 120px; top: 10%; left: 15%; }
-        .circle.medium { width: 200px; height: 200px; bottom: 15%; right: 10%; }
-        .circle.large { width: 300px; height: 300px; top: 55%; left: 60%; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-            from { transform: translateY(0px); }
-            to   { transform: translateY(-30px); }
-        }
-    </style>
+    }
+</style>
 </head>
+
 <body>
 
-    <!-- Decorative floating circles -->
-    <div class="circle small"></div>
-    <div class="circle medium"></div>
-    <div class="circle large"></div>
+<!-- Floating background blobs -->
+<div class="blob one"></div>
+<div class="blob two"></div>
+<div class="blob three"></div>
 
-    <div class="container">
-        <h1>🚀 Welcome to Jenkins CI/CD Deployment</h1>
-        <p>This mini project is deployed on <b>Apache Tomcat</b> for the <i>Weekdays 10AM batchproject</i>.</p>
-        <p><a href="hello">Say Hello to Shreenivas with Email ✉️</a></p>
-    </div>
+<div class="container">
+    <div class="badge">Jenkins • CI/CD • Tomcat</div>
+    <h1>🚀 Deployment Successful</h1>
+    <p>
+        This mini project is deployed using <b>Jenkins CI/CD</b> on
+        <b>Apache Tomcat</b>.
+    </p>
+    <p>
+        Batch: <i>Weekdays 10:00 AM</i>
+    </p>
+
+    <a class="button" href="hello">
+        ✉️ Say Hello to Shreenivas
+    </a>
+</div>
 
 </body>
 </html>
