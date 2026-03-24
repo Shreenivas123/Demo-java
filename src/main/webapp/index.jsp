@@ -185,7 +185,7 @@
 
 <div class="container">
     <div class="badge">Jenkins • CI/CD • Tomcat</div>
-    <h1>🚀 Deployment Successful</h1>
+    <h1>Jenkins Deployment Successful</h1>
     <p>
         This mini project is deployed using <b>Jenkins CI/CD</b> on
         <b>Apache Tomcat</b>.
