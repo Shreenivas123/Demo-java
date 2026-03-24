@@ -195,7 +195,7 @@
     </p>
 
     <a class="button" href="hello">
-        ✉️ Say Hello to Shreenivas
+        ✉️ Say Hello to class10am
     </a>
 </div>
 
