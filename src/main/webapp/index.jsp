@@ -453,13 +453,6 @@
             </div>
         </div>
         <div class="project-card reveal">
-            <h3>AWS CodePipeline — cms-wiser</h3>
-            <p>CloudFormation-managed pipeline with git tag-based triggers, CodeBuild compilation, and S3 artifact uploads for the CMS Wiser application.</p>
-            <div class="tech-tags">
-                <span>AWS</span><span>CloudFormation</span><span>CodeBuild</span><span>S3</span>
-            </div>
-        </div>
-        <div class="project-card reveal">
             <h3>Flyway DB Migrations</h3>
             <p>Multi-environment Azure DevOps pipelines with approval gates, drift detection, schema validation, and lookup data deployment for CorroHealth.</p>
             <div class="tech-tags">
