@@ -410,8 +410,8 @@
 
 <!-- HERO -->
 <div class="hero">
-    <div class="hero-tag">DevOps &amp; Cloud Engineer</div>
-    <h1>Building <em>Pipelines</em><br>That Ship Fearlessly</h1>
+    <div class="hero-tag">DevOps &amp; Cloud  Engineer</div>
+    <h1>Building Devops <em>Pipelines</em><br>That Ship Fearlessly</h1>
     <p class="hero-sub">
         I craft CI/CD infrastructure, automate cloud workflows, and bridge
         the gap between development velocity and operational resilience.
