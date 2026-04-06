@@ -410,7 +410,7 @@
 
 <!-- HERO -->
 <div class="hero">
-    <div class="hero-tag">DevOps &amp; Cloud And AI  Engineer</div>
+    <div class="hero-tag">DevOps &amp; Cloud Architect And AI  Engineer</div>
     <h1>Building Devops <em>Pipelines</em><br>That Ship Fearlessly</h1>
     <p class="hero-sub">
         I craft CI/CD infrastructure, automate cloud workflows, and bridge
