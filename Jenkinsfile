@@ -1,5 +1,5 @@
 pipeline {
-    agent slave-java
+    agent any
     
     stages {
         stage('Git clone') { 
