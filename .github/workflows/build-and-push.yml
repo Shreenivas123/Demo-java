@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      security-events: write   # for uploading Trivy SARIF
+      security-events: write   # needed to upload Trivy SARIF to Security tab
 
     steps:
       - name: Checkout
@@ -47,24 +47,24 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
             ${{ env.IMAGE_NAME }}:latest
 
-      - name: Run Trivy vulnerability scan
-        uses: aquasecurity/trivy-action@0.28.0
+      - name: Run Trivy vulnerability scan (table output)
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
           format: table
-          exit-code: '0'          # change to '1' to fail build on findings
+          exit-code: '0'          # change to '1' to fail the build on findings
           ignore-unfixed: true
           severity: CRITICAL,HIGH
 
       - name: Run Trivy (SARIF for Security tab)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
           format: sarif
           output: trivy-results.sarif
           severity: CRITICAL,HIGH
 
-      - name: Upload Trivy results to GitHub Security
+      - name: Upload Trivy results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
