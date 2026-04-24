@@ -399,7 +399,7 @@
 
 <!-- NAV -->
 <nav>
-    <div class="logo">Shreenivasa Y G<span>.</span></div>
+    <div class="logo">Shreenivasa Y G @Apponix<span>.</span></div>
     <div class="nav-links">
         <a href="#projects">Work</a>
         <a href="#skills">Skills</a>
