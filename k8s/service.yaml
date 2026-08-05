@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: demo-java-svc
+
+spec:
+  selector:
+    app: demo-java
+
+  type: NodePort
+
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+    nodePort: 30085
